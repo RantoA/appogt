@@ -4,7 +4,7 @@ from schemas import schemas
 from models import models
 
 
-def create_user(db: Session, fonction_id: int, user:schemas.UserCreate):
+async def create_user(db: Session, fonction_id: int, user:schemas.UserCreate):
     db_user= models.Users(im = user.im, 
                           email = user.email, 
                           nom = user.nom, 
@@ -12,20 +12,22 @@ def create_user(db: Session, fonction_id: int, user:schemas.UserCreate):
                           description = user.description,
                           fonction_id=fonction_id)
     db.add(db_user)
-    db.commit()
-    db.refresh(db_user)
+    await db.commit()
+    await db.refresh(db_user)
     return db_user
 
 
-def get_user(db : Session, user_id : int):
+async def get_user(db : Session, user_id : int):
     return db.query(models.Users).filter(models.Users.id==user_id).first()
 
 
 
 
-def create_fonction(db : Session, fonction : schemas.FonctionCreate):
+async def create_fonction(db : Session, fonction : schemas.CreateFonction):
     db_fontion = models.Fonction(nom = fonction.nom)
                                 
     db.add(db_fontion)
-    db.commit()
-    db.refresh(db_fontion)
+    await db.commit()
+    await db.refresh(db_fontion)
+    
+    return db_fontion

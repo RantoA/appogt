@@ -6,7 +6,7 @@ from schemas import schemas
 
 router = APIRouter()
 
-@router.post("/fonction", response_model=schemas.FonctionCreate, tags=["Fonction"])
-def create_fonction(fonction : schemas.FonctionCreate, db : Session=Depends(get_db)):
-    db_fonction = crud.create_fonction(db=db , fonction=fonction)
+@router.post("/fonction", tags=["Fonction"])
+async def create_fonction(fonction : schemas.CreateFonction, db : Session=Depends(get_db)):
+    db_fonction = await crud.create_fonction(db=db , fonction=fonction)
     return db_fonction

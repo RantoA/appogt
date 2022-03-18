@@ -25,11 +25,11 @@ class UserBase(UserCreate):
 
 ############### Pour la fonction #######################
 
-class FonctionCreate(BaseModel):
+class CreateFonction(BaseModel):
     nom : str
    
 
-class FonctionBase(FonctionCreate):
+class Foction(CreateFonction):
     id : int
 
     class Config:
