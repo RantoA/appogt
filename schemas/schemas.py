@@ -6,7 +6,7 @@ from pydantic import BaseModel, EmailStr
 ############### Pour l'user #######################
    
 class UserCreate(BaseModel):
-    im : str
+    im : int
     email : EmailStr
     nom : str
     rubrique : str
@@ -34,3 +34,5 @@ class Foction(CreateFonction):
 
     class Config:
         orm_mode=True
+
+############### Pour le saisi #######################
