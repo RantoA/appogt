@@ -11,6 +11,9 @@ class UserCreate(BaseModel):
     nom : str
     rubrique : str
     description : str
+    
+    class Config:
+        orm_mode=True
 
 class UserBase(UserCreate):
     id : int
@@ -19,20 +22,22 @@ class UserBase(UserCreate):
     
     fonction_id : int
     
-    class Config:
-        orm_mode=True
+class UserOut(UserCreate):
+    pass
 
 
 ############### Pour la fonction #######################
 
 class CreateFonction(BaseModel):
     nom : str
-   
+
+    class Config:
+        orm_mode=True   
 
 class Foction(CreateFonction):
     id : int
 
-    class Config:
-        orm_mode=True
+class FonctionOut(CreateFonction):
+    pass
 
 ############### Pour le saisi #######################
