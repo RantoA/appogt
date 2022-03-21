@@ -10,7 +10,7 @@ class Users(Base):
     
     id = Column(Integer,primary_key=True, autoincrement=True)
     nom = Column(String)
-    im = Column(String)
+    im = Column(Integer)
     email = Column(String)
     rubrique = Column(String)
     description = Column(String)
@@ -28,3 +28,13 @@ class Fonction(Base):
     nom = Column(String)
 
 
+class Saisi(Base):
+    __tablename__ = "saisi"
+    
+    id  = Column(Integer, primary_key=True, autoincrement=True)
+    natures = Column(String)
+    montants = Column(Boolean)
+    descriptions = Column(String)
+    comptes = Column(Integer)
+    datecrea = Column(DateTime, default=datetime.utcnow, nullable=False)
+    dateupdate = Column(DateTime, default=datetime.utcnow, nullable=False)

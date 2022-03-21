@@ -6,11 +6,14 @@ from pydantic import BaseModel, EmailStr
 ############### Pour l'user #######################
    
 class UserCreate(BaseModel):
-    im : str
+    im : int
     email : EmailStr
     nom : str
     rubrique : str
     description : str
+    
+    class Config:
+        orm_mode=True
 
 class UserBase(UserCreate):
     id : int
@@ -19,18 +22,22 @@ class UserBase(UserCreate):
     
     fonction_id : int
     
-    class Config:
-        orm_mode=True
+class UserOut(UserCreate):
+    pass
 
 
 ############### Pour la fonction #######################
 
-class FonctionCreate(BaseModel):
+class CreateFonction(BaseModel):
     nom : str
-   
-
-class FonctionBase(FonctionCreate):
-    id : int
 
     class Config:
-        orm_mode=True
+        orm_mode=True   
+
+class Foction(CreateFonction):
+    id : int
+
+class FonctionOut(CreateFonction):
+    pass
+
+############### Pour le saisi #######################
