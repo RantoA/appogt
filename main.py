@@ -1,5 +1,6 @@
-from fastapi import FastAPI
-from routers import fonction, user
+from fastapi import Depends, FastAPI
+from fastapi.security import OAuth2PasswordBearer
+from routers import fonction, rubrique, user
 from models import models
 from base.config import settings
 from base.database import init_db, get_db
@@ -12,9 +13,12 @@ app = FastAPI(title="appOGT")
 async def on_startup():
     await init_db()
 
-app.include_router(user.router)
-app.include_router(fonction.router)
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 @app.get("/", tags=["Accueil"])
 async def appOgt():
     return{"msg": "WELCOM TO APPOGT"}
+
+app.include_router(user.router)
+app.include_router(fonction.router)
+app.include_router(rubrique.router)
